@@ -15,6 +15,36 @@ require "functions.php";
     <div class="col-sm-6">
         <button class="btn btn-info mt-4" id="simpan_prodi">Simpan</button>
     </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ID Prodi</th>
+                    <th>Nama Prodi</th>
+                    <th>Update</th>
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                foreach (prodi() as $p): ?>
+                <tr>
+                    <td><? = $no++ ?></td>
+                    <td><? = $p["id"]; ?></td>
+                    <td><? = $p["nama_prodi"]; ?></td>
+                    <td><? = date ("d F Y, H:i", strtotime($p["edit"];))?></td>
+                    <td>
+                        <button class="btn btn-sm btn-success"> Edit </button>
+                        <button class="btn btn-sm btn-danger"> Hapus </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -35,6 +65,7 @@ require "functions.php";
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         `)
+                        $("#halaman_body").load("prodi.php")
                     } else {
                         $("#berhasil").html(`
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
